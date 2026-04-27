@@ -1,10 +1,29 @@
 package xyz.fallnight.server;
 
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import net.minestom.server.MinecraftServer;
+import net.minestom.server.command.builder.CommandResult;
+import net.minestom.server.coordinate.Pos;
+import net.minestom.server.event.instance.InstanceChunkLoadEvent;
+import net.minestom.server.event.player.PlayerChunkLoadEvent;
+import net.minestom.server.event.player.PlayerDisconnectEvent;
+import net.minestom.server.event.server.ServerListPingEvent;
+import net.minestom.server.instance.Chunk;
+import net.minestom.server.instance.InstanceContainer;
+import net.minestom.server.instance.InstanceManager;
+import net.minestom.server.instance.LightingChunk;
+import net.minestom.server.instance.Section;
+import net.minestom.server.instance.anvil.AnvilLoader;
+import net.minestom.server.instance.generator.Generator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import xyz.fallnight.server.bootstrap.DataDirectoryBootstrap;
 import xyz.fallnight.server.bootstrap.DefaultContentSeeder;
 import xyz.fallnight.server.command.CommandRegistrationResult;
 import xyz.fallnight.server.command.FallnightCommandRegistrar;
 import xyz.fallnight.server.command.framework.PermissionService;
+import xyz.fallnight.server.domain.mine.MineDefinition;
+import xyz.fallnight.server.domain.mine.MineRegion;
 import xyz.fallnight.server.gameplay.auction.AuctionExpirationModule;
 import xyz.fallnight.server.gameplay.broadcast.BroadcastRotationModule;
 import xyz.fallnight.server.gameplay.chat.ChatFormattingModule;
@@ -20,10 +39,10 @@ import xyz.fallnight.server.gameplay.maintenance.MaintenanceModule;
 import xyz.fallnight.server.gameplay.mine.MineGameplayIntegration;
 import xyz.fallnight.server.gameplay.moderation.ModerationGameplayModule;
 import xyz.fallnight.server.gameplay.player.ItemRestrictionModule;
-import xyz.fallnight.server.gameplay.player.PlayerTickerModule;
 import xyz.fallnight.server.gameplay.player.LoginGateModule;
 import xyz.fallnight.server.gameplay.player.PlayerHudModule;
 import xyz.fallnight.server.gameplay.player.PlayerLifecycleModule;
+import xyz.fallnight.server.gameplay.player.PlayerTickerModule;
 import xyz.fallnight.server.gameplay.player.ProtectionGameplayModule;
 import xyz.fallnight.server.gameplay.player.WorldRuleModule;
 import xyz.fallnight.server.gameplay.plot.PlotRuntimeModule;
@@ -73,29 +92,14 @@ import xyz.fallnight.server.service.VaultService;
 import xyz.fallnight.server.service.VotePartyService;
 import xyz.fallnight.server.service.WarningService;
 import xyz.fallnight.server.service.WorldLabelService;
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
-import net.minestom.server.MinecraftServer;
-import net.minestom.server.command.builder.CommandResult;
-import net.minestom.server.coordinate.Pos;
-import net.minestom.server.event.instance.InstanceChunkLoadEvent;
-import net.minestom.server.event.player.PlayerChunkLoadEvent;
-import net.minestom.server.event.player.PlayerDisconnectEvent;
-import net.minestom.server.event.server.ServerListPingEvent;
-import net.minestom.server.instance.Chunk;
-import net.minestom.server.instance.InstanceContainer;
-import net.minestom.server.instance.InstanceManager;
-import net.minestom.server.instance.LightingChunk;
-import net.minestom.server.instance.Section;
-import net.minestom.server.instance.anvil.AnvilLoader;
-import net.minestom.server.instance.generator.Generator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public final class Main {
     private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
@@ -185,6 +189,7 @@ public final class Main {
             mineService.renameWorldLabel("spawn-world", spawnService.worldName());
             mineService.renameWorldLabel("PvPMine", pvpMineWorldService.worldName());
             mineService.renameWorldLabel("pvpmine", pvpMineWorldService.worldName());
+            preloadMineChunks(mainInstance, mineService, spawnService.worldName());
             ProtectionGameplayModule protectionGameplayModule = new ProtectionGameplayModule(profileService, mineService, plotRuntimeModule, spawnService);
             protectionGameplayModule.register();
             GangChatModule gangChatModule = new GangChatModule(gangService);
@@ -493,6 +498,68 @@ public final class Main {
         LightingChunk.relight(instance, loadedChunks);
     }
 
+    private static void preloadMineChunks(InstanceContainer instance, MineService mineService, String worldName) {
+        if (instance == null || mineService == null || worldName == null || worldName.isBlank()) {
+            return;
+        }
+
+        Set<ChunkCoordinate> coordinates = new HashSet<>();
+        for (MineDefinition mine : mineService.allMines()) {
+            if (mine.isDisabled() || mine.getWorld() == null || !mine.getWorld().equalsIgnoreCase(worldName)) {
+                continue;
+            }
+            addChunkRange(coordinates, mine.getRegion());
+            addChunksAround(coordinates, chunkCoordinate(mine.effectiveSpawnX(), mine.effectiveSpawnZ()), 1);
+        }
+
+        if (coordinates.isEmpty()) {
+            return;
+        }
+
+        List<Chunk> loadedChunks = new ArrayList<>(coordinates.size());
+        for (ChunkCoordinate coordinate : coordinates) {
+            loadedChunks.add(instance.loadChunk(coordinate.x(), coordinate.z()).join());
+        }
+        LightingChunk.relight(instance, loadedChunks);
+        LOGGER.info("Preloaded {} mine chunks in world {}", loadedChunks.size(), worldName);
+    }
+
+    private static void addChunkRange(Set<ChunkCoordinate> coordinates, MineRegion region) {
+        if (coordinates == null || region == null) {
+            return;
+        }
+
+        int minChunkX = blockToChunk(region.minX());
+        int maxChunkX = blockToChunk(region.maxX());
+        int minChunkZ = blockToChunk(region.minZ());
+        int maxChunkZ = blockToChunk(region.maxZ());
+        for (int chunkX = minChunkX; chunkX <= maxChunkX; chunkX++) {
+            for (int chunkZ = minChunkZ; chunkZ <= maxChunkZ; chunkZ++) {
+                coordinates.add(new ChunkCoordinate(chunkX, chunkZ));
+            }
+        }
+    }
+
+    private static void addChunksAround(Set<ChunkCoordinate> coordinates, ChunkCoordinate center, int radius) {
+        if (coordinates == null || center == null || radius < 0) {
+            return;
+        }
+
+        for (int chunkX = center.x() - radius; chunkX <= center.x() + radius; chunkX++) {
+            for (int chunkZ = center.z() - radius; chunkZ <= center.z() + radius; chunkZ++) {
+                coordinates.add(new ChunkCoordinate(chunkX, chunkZ));
+            }
+        }
+    }
+
+    private static ChunkCoordinate chunkCoordinate(int blockX, int blockZ) {
+        return new ChunkCoordinate(blockToChunk(blockX), blockToChunk(blockZ));
+    }
+
+    private static int blockToChunk(int coordinate) {
+        return Math.floorDiv(coordinate, Chunk.CHUNK_SIZE_X);
+    }
+
     private static void registerChunkLoadRelight(InstanceContainer instance) {
         instance.eventNode().addListener(InstanceChunkLoadEvent.class, event -> {
             List<Chunk> affectedChunks = loadedChunksAround(instance, event.getChunkX(), event.getChunkZ(), 1);
@@ -670,5 +737,8 @@ public final class Main {
             return "127.0.0.1";
         }
         return configuredHost;
+    }
+
+    private record ChunkCoordinate(int x, int z) {
     }
 }
