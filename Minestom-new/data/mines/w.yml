@@ -1,0 +1,19 @@
+---
+name: W
+id: 22
+world: spawn-world
+x1: 8591
+y1: 62
+z1: 301
+x2: 8646
+y2: 45
+z2: 258
+blocks:
+  - "minecraft:ancient_debris"
+  - "minecraft:netherite_block"
+prices:
+  "minecraft:ancient_debris": 2800
+  "minecraft:netherite_block": 4500
+spawnX: 8618
+spawnY: 63
+spawnZ: 279

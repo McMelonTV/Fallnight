@@ -1,0 +1,88 @@
+ranks:
+  member:
+    id: "member"
+    name: "Member"
+    permissions:
+      - "fallnight.kit.starter"
+    prefix: "§fMember"
+    isDefault: true
+    priority: 0
+  mercenary:
+    id: "mercenary"
+    name: "Mercenary"
+    permissions:
+      - "fallnight.kit.mercenary"
+      - "fallnight.command.nick"
+    prefix: "§eMercenary"
+    plots: 1
+    vaults: 1
+    inherit:
+      - member
+    isDonator: true
+    priority: 10
+  warrior:
+    id: "warrior"
+    name: "Warrior"
+    permissions:
+      - "fallnight.kit.warrior"
+      - "fallnight.tag.colored"
+      - "fallnight.chat.colored"
+    prefix: "§4Warrior"
+    plots: 1
+    vaults: 2
+    inherit:
+      - mercenary
+    isDonator: true
+    priority: 20
+  knight:
+    id: "knight"
+    name: "Knight"
+    permissions:
+      - "fallnight.kit.knight"
+      - "fallnight.command.fly"
+    prefix: "§2Knight"
+    plots: 2
+    vaults: 3
+    inherit:
+      - warrior
+    isDonator: true
+    priority: 30
+  lord:
+    id: "lord"
+    name: "Lord"
+    permissions:
+      - "fallnight.kit.lord"
+      - "fallnight.command.size"
+    prefix: "§cLord"
+    plots: 2
+    vaults: 4
+    inherit:
+      - knight
+    isDonator: true
+    priority: 40
+  titan:
+    id: "titan"
+    name: "Titan"
+    permissions:
+      - "fallnight.kit.titan"
+    prefix: "§9Titan"
+    plots: 3
+    vaults: 5
+    inherit:
+      - lord
+    isDonator: true
+    priority: 50
+  admin:
+    id: "admin"
+    name: "Admin"
+    prefix: "§4Admin"
+    isStaff: true
+    priority: 90
+  owner:
+    id: "owner"
+    name: "Owner"
+    prefix: "§4Owner"
+    isStaff: true
+    inherit:
+      - admin
+    priority: 100

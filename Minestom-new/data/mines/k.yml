@@ -1,0 +1,19 @@
+---
+name: K
+id: 10
+world: spawn-world
+x1: 5891
+y1: 62
+z1: 41
+x2: 5946
+y2: 45
+z2: -2
+blocks:
+  - "minecraft:nether_gold_ore"
+  - "minecraft:netherrack"
+prices:
+  "minecraft:nether_gold_ore": 120
+  "minecraft:netherrack": 15
+spawnX: 5918
+spawnY: 63
+spawnZ: 19

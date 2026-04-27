@@ -1,0 +1,42 @@
+---
+hills:
+- id: "spawn-koth"
+  displayName: "Spawn Koth"
+  world: "spawn-world"
+  x: 0
+  y: 52
+  z: 12
+  radius: 8
+  captureSeconds: 120
+  rewardMoney: 2500.0
+  rewardPrestige: 10
+- id: "pvpmine-east"
+  displayName: "Pvpmine East"
+  world: "pvpmine"
+  x: 32
+  y: 74
+  z: 32
+  radius: 10
+  captureSeconds: 120
+  rewardMoney: 2500.0
+  rewardPrestige: 10
+- id: "pvpmine-west"
+  displayName: "Pvpmine West"
+  world: "pvpmine"
+  x: -32
+  y: 74
+  z: -32
+  radius: 10
+  captureSeconds: 120
+  rewardMoney: 2500.0
+  rewardPrestige: 10
+state:
+  nextHillId: "spawn-koth"
+  nextStartEpochSecond: 0
+  spawnNext: 0
+  active:
+    hillId: null
+    capturer: null
+    progressSeconds: 0
+next-koth: 0
+spawn-next: 0

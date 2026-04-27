@@ -1,0 +1,19 @@
+---
+name: Q
+id: 16
+world: spawn-world
+x1: 8009
+y1: 67
+z1: 288
+x2: 8028
+y2: 67
+z2: 268
+blocks:
+  - "minecraft:raw_copper_block"
+  - "minecraft:calcite"
+prices:
+  "minecraft:raw_copper_block": 520
+  "minecraft:calcite": 24
+spawnX: 8018
+spawnY: 68
+spawnZ: 278

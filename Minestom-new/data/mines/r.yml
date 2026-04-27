@@ -1,0 +1,19 @@
+---
+name: R
+id: 17
+world: spawn-world
+x1: 7187
+y1: 78
+z1: 281
+x2: 7214
+y2: 64
+z2: 247
+blocks:
+  - "minecraft:amethyst_block"
+  - "minecraft:smooth_basalt"
+prices:
+  "minecraft:amethyst_block": 650
+  "minecraft:smooth_basalt": 28
+spawnX: 7200
+spawnY: 79
+spawnZ: 264

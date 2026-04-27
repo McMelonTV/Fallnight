@@ -1,0 +1,19 @@
+---
+name: Z
+id: 25
+world: spawn-world
+x1: 7859
+y1: 62
+z1: 289
+x2: 7886
+y2: 62
+z2: 260
+blocks:
+  - "minecraft:netherite_block"
+  - "minecraft:ancient_debris"
+prices:
+  "minecraft:netherite_block": 8000
+  "minecraft:ancient_debris": 3500
+spawnX: 7872
+spawnY: 63
+spawnZ: 274

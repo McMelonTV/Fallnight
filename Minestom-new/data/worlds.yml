@@ -1,0 +1,4 @@
+worlds:
+  main: spawn
+  plots: plots
+  pvpMine: PvPMine

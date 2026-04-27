@@ -1,0 +1,19 @@
+---
+name: C
+id: 2
+world: spawn-world
+x1: 4328
+y1: 71
+z1: 16
+x2: 4355
+y2: 57
+z2: -18
+blocks:
+  - "minecraft:copper_ore"
+  - "minecraft:coal_ore"
+prices:
+  "minecraft:copper_ore": 8
+  "minecraft:coal_ore": 6
+spawnX: 4341
+spawnY: 72
+spawnZ: -1

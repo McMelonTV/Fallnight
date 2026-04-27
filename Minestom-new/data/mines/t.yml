@@ -1,0 +1,19 @@
+---
+name: T
+id: 19
+world: spawn-world
+x1: 6877
+y1: 61
+z1: 272
+x2: 6904
+y2: 47
+z2: 238
+blocks:
+  - "minecraft:end_stone"
+  - "minecraft:purpur_block"
+prices:
+  "minecraft:end_stone": 1100
+  "minecraft:purpur_block": 1250
+spawnX: 6890
+spawnY: 62
+spawnZ: 255

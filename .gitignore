@@ -1,0 +1,20 @@
+.worktrees/
+out/
+build/
+bin/
+*.tar.gz
+*.zip
+*.mca
+.project
+.classpath
+.factorypath
+.settings/
+.gradle/
+.kotlin/
+#data/
+.idea/
+
+# legacy/runtime assets not shipped in source repo
+PocketMineMP-original/
+spawn-world/
+PremiereSetups-15FreeMines.zip
