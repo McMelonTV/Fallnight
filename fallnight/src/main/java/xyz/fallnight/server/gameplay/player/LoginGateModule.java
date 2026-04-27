@@ -1,12 +1,13 @@
 package xyz.fallnight.server.gameplay.player;
 
-import xyz.fallnight.server.ServerConfig;
-import java.util.Locale;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.event.Event;
 import net.minestom.server.event.EventNode;
 import net.minestom.server.event.player.AsyncPlayerPreLoginEvent;
+import xyz.fallnight.server.ServerConfig;
+
+import java.util.Locale;
 
 public final class LoginGateModule {
     private static final LegacyComponentSerializer LEGACY = LegacyComponentSerializer.legacySection();
@@ -23,12 +24,12 @@ public final class LoginGateModule {
             if (config.maintenanceMode()) {
                 String username = event.getUsername() == null ? "" : event.getUsername().trim().toLowerCase(Locale.ROOT);
                 boolean whitelisted = config.maintenanceWhitelist().stream()
-                    .map(name -> name.trim().toLowerCase(Locale.ROOT))
-                    .anyMatch(username::equals);
+                        .map(name -> name.trim().toLowerCase(Locale.ROOT))
+                        .anyMatch(username::equals);
                 if (whitelisted) {
                     return;
                 }
-                event.getConnection().kick(LEGACY.deserialize("§8[§bFallnight§8]\n§7The server is currently undergoing maintenance.\n§7Contact us at: §bdiscord.fallnight.xyz"));
+                event.getConnection().kick(LEGACY.deserialize("§8[§bFallnight§8]\n§7The server is currently undergoing maintenance." /*+ "\n§7Contact us at: §bdiscord.fallnight.xyz"*/));
                 return;
             }
             if (MinecraftServer.getConnectionManager().getOnlinePlayers().size() >= config.maxPlayers()) {

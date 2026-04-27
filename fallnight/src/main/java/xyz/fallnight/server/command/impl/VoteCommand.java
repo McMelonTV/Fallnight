@@ -31,11 +31,12 @@ public final class VoteCommand extends FallnightCommand {
 
     private void sendStatus(net.minestom.server.command.CommandSender sender) {
         sender.sendMessage(net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacySection().deserialize(
-            "§8§l<--§bFN§8-->§r"
-                + "\n§b Fallnight§r§7 voting§r"
-                + "\n§b > §r§7Vote link: §bvote.fallnight.xyz§r"
-                + "\n§b §7Once voted, your rewards will be given automatically."
-                + "\n§r§8§l<--++-->⛏"
+                "§8§l<--§bFN§8-->§r"
+                        + "\n§b Fallnight§r§7 voting§r"
+//                + "\n§b > §r§7Vote link: §bvote.fallnight.xyz§r"
+//                + "\n§b §7Once voted, your rewards will be given automatically."
+                        + "\n§b §7voting is not set up"
+                        + "\n§r§8§l<--++-->⛏"
         ));
     }
 }

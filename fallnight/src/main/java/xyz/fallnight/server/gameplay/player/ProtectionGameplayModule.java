@@ -1,16 +1,10 @@
 package xyz.fallnight.server.gameplay.player;
 
-import xyz.fallnight.server.gameplay.plot.PlotRuntimeModule;
-import xyz.fallnight.server.gameplay.mine.MineGameplayIntegration;
-import xyz.fallnight.server.service.AdminModeService;
-import xyz.fallnight.server.service.MineService;
-import xyz.fallnight.server.service.PlayerProfileService;
-import xyz.fallnight.server.service.SpawnService;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.coordinate.Pos;
-import net.minestom.server.entity.damage.Damage;
 import net.minestom.server.entity.Player;
+import net.minestom.server.entity.damage.Damage;
 import net.minestom.server.event.Event;
 import net.minestom.server.event.EventNode;
 import net.minestom.server.event.entity.EntityDamageEvent;
@@ -22,8 +16,14 @@ import net.minestom.server.event.player.PlayerPickBlockEvent;
 import net.minestom.server.event.player.PlayerUseItemEvent;
 import net.minestom.server.event.player.PlayerUseItemOnBlockEvent;
 import net.minestom.server.instance.Instance;
-import xyz.fallnight.server.domain.mine.MineDefinition;
 import net.minestom.server.item.Material;
+import xyz.fallnight.server.domain.mine.MineDefinition;
+import xyz.fallnight.server.gameplay.mine.MineGameplayIntegration;
+import xyz.fallnight.server.gameplay.plot.PlotRuntimeModule;
+import xyz.fallnight.server.service.AdminModeService;
+import xyz.fallnight.server.service.MineService;
+import xyz.fallnight.server.service.PlayerProfileService;
+import xyz.fallnight.server.service.SpawnService;
 
 import java.util.Optional;
 
@@ -36,16 +36,21 @@ public final class ProtectionGameplayModule {
     private final EventNode<Event> eventNode;
 
     public ProtectionGameplayModule(
-        PlayerProfileService profileService,
-        MineService mineService,
-        PlotRuntimeModule plotRuntimeModule,
-        SpawnService spawnWorldService
+            PlayerProfileService profileService,
+            MineService mineService,
+            PlotRuntimeModule plotRuntimeModule,
+            SpawnService spawnWorldService
     ) {
         this.profileService = profileService;
         this.mineService = mineService;
         this.plotRuntimeModule = plotRuntimeModule;
         this.spawnWorldService = spawnWorldService;
         this.eventNode = EventNode.all("protection-gameplay");
+    }
+
+    private static void sendTip(Player player, String message) {
+//        player.sendActionBar(LEGACY.deserialize("§r§8[§bFN§8]§r\n§r§7" + message));
+        player.sendActionBar(LEGACY.deserialize("§r§8[§bFN§8]§r §r§7" + message));
     }
 
     public void register() {
@@ -118,7 +123,7 @@ public final class ProtectionGameplayModule {
         sendTip(player, "You can't use that here!");
     }
 
-private void onDamage(EntityDamageEvent event) {
+    private void onDamage(EntityDamageEvent event) {
         if (!(event.getEntity() instanceof Player)) {
             return;
         }
@@ -131,9 +136,9 @@ private void onDamage(EntityDamageEvent event) {
         }
         String cause = damage.getType().name().toLowerCase();
         if (cause.contains("fall") || cause.contains("suffocation") || cause.contains("void")
-            || cause.contains("explosion") || cause.contains("starvation") || cause.contains("drown")
-            || cause.contains("in_wall") || cause.contains("cramming") || cause.contains("magma")
-            || cause.contains("hot_floor") || cause.contains("campfire") || cause.contains("cactus")) {
+                || cause.contains("explosion") || cause.contains("starvation") || cause.contains("drown")
+                || cause.contains("in_wall") || cause.contains("cramming") || cause.contains("magma")
+                || cause.contains("hot_floor") || cause.contains("campfire") || cause.contains("cactus")) {
             event.setCancelled(true);
         }
     }
@@ -183,9 +188,5 @@ private void onDamage(EntityDamageEvent event) {
         }
         event.setCancelled(true);
         sendTip(player, "You can't build here!");
-    }
-
-    private static void sendTip(Player player, String message) {
-        player.sendActionBar(LEGACY.deserialize("§r§8[§bFN§8]§r\n§r§7" + message));
     }
 }

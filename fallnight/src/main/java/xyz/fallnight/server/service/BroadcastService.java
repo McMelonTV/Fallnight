@@ -1,8 +1,10 @@
 package xyz.fallnight.server.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.minestom.server.MinecraftServer;
 import xyz.fallnight.server.persistence.JacksonMappers;
 import xyz.fallnight.server.util.LegacyTextFormatter;
+
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
@@ -13,7 +15,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.IntUnaryOperator;
-import net.minestom.server.MinecraftServer;
 
 public final class BroadcastService {
     private static final long DEFAULT_INTERVAL_SECONDS = 300L;
@@ -23,10 +24,6 @@ public final class BroadcastService {
     private final IntUnaryOperator randomIndexPicker;
     private volatile List<String> messages;
     private volatile long intervalSeconds;
-
-    public static BroadcastService fromDataRoot(Path dataRoot) {
-        return new BroadcastService(dataRoot.resolve("broadcast.yml"));
-    }
 
     public BroadcastService(Path broadcastFile) {
         this(broadcastFile, size -> ThreadLocalRandom.current().nextInt(size));
@@ -38,6 +35,47 @@ public final class BroadcastService {
         this.randomIndexPicker = randomIndexPicker;
         this.messages = List.of();
         this.intervalSeconds = DEFAULT_INTERVAL_SECONDS;
+    }
+
+    public static BroadcastService fromDataRoot(Path dataRoot) {
+        return new BroadcastService(dataRoot.resolve("broadcast.yml"));
+    }
+
+    private static List<String> readMessages(Map<?, ?> root) {
+        Object messagesNode = root.get("messages");
+        if (!(messagesNode instanceof Iterable<?>)) {
+            messagesNode = root.get("broadcasts");
+        }
+
+        if (!(messagesNode instanceof Iterable<?> iterable)) {
+            return List.of();
+        }
+
+        List<String> result = new ArrayList<>();
+        for (Object value : iterable) {
+            if (!(value instanceof String text)) {
+                continue;
+            }
+
+            String normalized = LegacyTextFormatter.normalize(text).trim();
+            if (!normalized.isEmpty()) {
+                result.add(normalized);
+            }
+        }
+        return result;
+    }
+
+    private static long readInterval(Map<?, ?> root) {
+        Object intervalNode = root.get("intervalSeconds");
+        if (!(intervalNode instanceof Number number)) {
+            intervalNode = root.get("interval");
+        }
+
+        if (intervalNode instanceof Number number) {
+            long candidate = number.longValue();
+            return candidate > 0L ? candidate : DEFAULT_INTERVAL_SECONDS;
+        }
+        return DEFAULT_INTERVAL_SECONDS;
     }
 
     public void load() throws IOException {
@@ -102,12 +140,13 @@ public final class BroadcastService {
             Map<String, Object> data = new LinkedHashMap<>();
             data.put("intervalSeconds", DEFAULT_INTERVAL_SECONDS);
             data.put("broadcasts", List.of(
-                "§8[§6FN§8] §r§7You can vote at §6vote.fallnight.xyz§r§7 to win awesome prizes!",
-                "§8[§6FN§8] §r§7bc1",
-                "§8[§6FN§8] §r§7bc2",
-                "§8[§6FN§8] §r§7bc3",
-                "§8[§6FN§8] §r§7bc4",
-                "§8[§6FN§8] §r§7bc5"
+//                "§8[§6FN§8] §r§7You can vote at §6vote.fallnight.xyz§r§7 to win awesome prizes!",
+//                "§8[§6FN§8] §r§7bc1",
+//                "§8[§6FN§8] §r§7bc2",
+//                "§8[§6FN§8] §r§7bc3",
+//                "§8[§6FN§8] §r§7bc4",
+//                "§8[§6FN§8] §r§7bc5"
+                    "§8[§6FN§8] §r§7welcome to your favorite legally distinct minecraft prison server"
             ));
             yaml.writeValue(broadcastFile.toFile(), data);
         } catch (IOException exception) {
@@ -123,42 +162,5 @@ public final class BroadcastService {
 
         int currentIndex = Math.floorMod(randomIndexPicker.applyAsInt(current.size()), current.size());
         return current.get(currentIndex);
-    }
-
-    private static List<String> readMessages(Map<?, ?> root) {
-        Object messagesNode = root.get("messages");
-        if (!(messagesNode instanceof Iterable<?>)) {
-            messagesNode = root.get("broadcasts");
-        }
-
-        if (!(messagesNode instanceof Iterable<?> iterable)) {
-            return List.of();
-        }
-
-        List<String> result = new ArrayList<>();
-        for (Object value : iterable) {
-            if (!(value instanceof String text)) {
-                continue;
-            }
-
-            String normalized = LegacyTextFormatter.normalize(text).trim();
-            if (!normalized.isEmpty()) {
-                result.add(normalized);
-            }
-        }
-        return result;
-    }
-
-    private static long readInterval(Map<?, ?> root) {
-        Object intervalNode = root.get("intervalSeconds");
-        if (!(intervalNode instanceof Number number)) {
-            intervalNode = root.get("interval");
-        }
-
-        if (intervalNode instanceof Number number) {
-            long candidate = number.longValue();
-            return candidate > 0L ? candidate : DEFAULT_INTERVAL_SECONDS;
-        }
-        return DEFAULT_INTERVAL_SECONDS;
     }
 }

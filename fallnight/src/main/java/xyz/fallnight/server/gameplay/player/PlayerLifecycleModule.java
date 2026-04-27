@@ -1,17 +1,5 @@
 package xyz.fallnight.server.gameplay.player;
 
-import xyz.fallnight.server.domain.mine.MineDefinition;
-import xyz.fallnight.server.domain.user.UserProfile;
-import xyz.fallnight.server.service.AuctionService;
-import xyz.fallnight.server.service.AdminModeService;
-import xyz.fallnight.server.service.DefaultWorldService;
-import xyz.fallnight.server.service.InfoPagesService;
-import xyz.fallnight.server.service.KitService;
-import xyz.fallnight.server.service.LegacyCustomItemService;
-import xyz.fallnight.server.service.MineService;
-import xyz.fallnight.server.service.PlayerProfileService;
-import xyz.fallnight.server.service.SpawnService;
-import xyz.fallnight.server.service.TagService;
 import net.kyori.adventure.key.Key;
 import net.kyori.adventure.sound.Sound;
 import net.kyori.adventure.text.Component;
@@ -25,6 +13,18 @@ import net.minestom.server.instance.Instance;
 import net.minestom.server.network.player.ClientSettings;
 import net.minestom.server.timer.Task;
 import net.minestom.server.timer.TaskSchedule;
+import xyz.fallnight.server.domain.mine.MineDefinition;
+import xyz.fallnight.server.domain.user.UserProfile;
+import xyz.fallnight.server.service.AdminModeService;
+import xyz.fallnight.server.service.AuctionService;
+import xyz.fallnight.server.service.DefaultWorldService;
+import xyz.fallnight.server.service.InfoPagesService;
+import xyz.fallnight.server.service.KitService;
+import xyz.fallnight.server.service.LegacyCustomItemService;
+import xyz.fallnight.server.service.MineService;
+import xyz.fallnight.server.service.PlayerProfileService;
+import xyz.fallnight.server.service.SpawnService;
+import xyz.fallnight.server.service.TagService;
 
 public final class PlayerLifecycleModule {
     private final PlayerProfileService profileService;
@@ -197,9 +197,10 @@ public final class PlayerLifecycleModule {
         player.sendMessage(net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacySection().deserialize(
                 "§8§l<--§bFN§8--> "
                         + "\n§r§7§b Fallnight§7 useful links§r"
-                        + "\n§r §b§l> §r§7Vote: §bvote.fallnight.xyz §8(get rewards like a free rankup)"
-                        + "\n§r §b§l> §r§7Shop: §bshop.fallnight.xyz"
-                        + "\n§r §b§l> §r§7Discord: §bdiscord.fallnight.xyz"
+//                        + "\n§r §b§l> §r§7Vote: §bvote.fallnight.xyz §8(get rewards like a free rankup)"
+//                        + "\n§r §b§l> §r§7Shop: §bshop.fallnight.xyz"
+//                        + "\n§r §b§l> §r§7Discord: §bdiscord.fallnight.xyz"
+                        + "\n§r §b§l> §r§7i cba to set up any rn"
                         + "\n§r§8§l<--++-->⛏"
         ));
         player.showTitle(Title.title(

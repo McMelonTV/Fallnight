@@ -2,9 +2,9 @@ package xyz.fallnight.server.service;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -29,36 +29,37 @@ public final class InfoPagesService {
             "§r§811 - §r§l§bMoney Boosting is prohibited\n§r§7Donating money to players or an alt account in anyway is not allowed. If you are caught taking part in this, you will be punished appropriately. This includes prestige boosting (also known as self boosting)."
     );
     private static final List<String> DEFAULT_NEWS = List.of(
-            "§r§bFallnight Season 3 §8- §7Release 3.1.1",
-            "§r§73.1.1",
-            "§r§8- §r§7Shortened Spawn KOTH timer to 10 minutes.",
-            "§r§8- §r§7Fixed `/p clear` replacing bedrock to dirt.",
-            "§r§73.1.0",
-            "§r§8- §r§7Increased all mine sizes (except for A) by a lot.",
-            "§r§8- §r§7Added a spawn koth.",
-            "§r§8- §r§7Nerfed dust rates for iron, redstone, and diamond blocks.",
-            "§r§8- §r§7Added total online time to /stats.",
-            "§r§8- §r§7Fixed a dupe with enchants.",
-            "§r§8- §r§7Fixed a crash.",
-            "§r§8- §r§7Fixed a typo in the rename item form.",
-            "§r§73.0.3",
-            "§r§8- §r§7Extraction is now mythic.",
-            "§r§8- §r§7Auto repair is now very rare.",
-            "§r§73.0.2",
-            "§r§8- §r§7Added user's gang in /stats.",
-            "§r§8- §r§7Added back the auction house confirm purchase form.",
-            "§r§8- §r§7Fixed block lag when mining.",
-            "§r§8- §r§7Fixed players not being able to run /ah in pvp.",
-            "§r§8- §r§7Fixed XP dropping from blocks in plots.",
-            "§r§8- §r§7Fixed two crashes.",
-            "§r§73.0.1",
-            "§r§8- §r§7Fixed missing permissions for warrior (/renameitem).",
-            "§r§8- §r§7Made some performance improvements.",
-            "§r§8- §r§7Attempted to fix the multiple votes per vote bug.",
-            "§r§8- §r§7Mostly fixed chunk rendering.",
-            "§r§8- §r§7Disabled sub command auto completion temporarily.",
-            "§r§8------",
-            "§r§8It seems like there is no logs of updates before this!"
+            "§r§bok i am not going to set this up because the way this data is handled is horrifying"
+//            "§r§bFallnight Season 3 §8- §7Release 3.1.1",
+//            "§r§73.1.1",
+//            "§r§8- §r§7Shortened Spawn KOTH timer to 10 minutes.",
+//            "§r§8- §r§7Fixed `/p clear` replacing bedrock to dirt.",
+//            "§r§73.1.0",
+//            "§r§8- §r§7Increased all mine sizes (except for A) by a lot.",
+//            "§r§8- §r§7Added a spawn koth.",
+//            "§r§8- §r§7Nerfed dust rates for iron, redstone, and diamond blocks.",
+//            "§r§8- §r§7Added total online time to /stats.",
+//            "§r§8- §r§7Fixed a dupe with enchants.",
+//            "§r§8- §r§7Fixed a crash.",
+//            "§r§8- §r§7Fixed a typo in the rename item form.",
+//            "§r§73.0.3",
+//            "§r§8- §r§7Extraction is now mythic.",
+//            "§r§8- §r§7Auto repair is now very rare.",
+//            "§r§73.0.2",
+//            "§r§8- §r§7Added user's gang in /stats.",
+//            "§r§8- §r§7Added back the auction house confirm purchase form.",
+//            "§r§8- §r§7Fixed block lag when mining.",
+//            "§r§8- §r§7Fixed players not being able to run /ah in pvp.",
+//            "§r§8- §r§7Fixed XP dropping from blocks in plots.",
+//            "§r§8- §r§7Fixed two crashes.",
+//            "§r§73.0.1",
+//            "§r§8- §r§7Fixed missing permissions for warrior (/renameitem).",
+//            "§r§8- §r§7Made some performance improvements.",
+//            "§r§8- §r§7Attempted to fix the multiple votes per vote bug.",
+//            "§r§8- §r§7Mostly fixed chunk rendering.",
+//            "§r§8- §r§7Disabled sub command auto completion temporarily.",
+//            "§r§8------",
+//            "§r§8It seems like there is no logs of updates before this!"
     );
     private static final List<String> DEFAULT_GUIDE = List.of(
             "§r§0Welcome to the §bFallnight server§0!",
