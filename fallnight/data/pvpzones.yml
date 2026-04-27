@@ -1,9 +1,0 @@
----
-- id: pvpmine-core
-  world: pvpmine
-  x1: -64
-  y1: 0
-  z1: -64
-  x2: 64
-  y2: 255
-  z2: 64

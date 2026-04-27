@@ -11,7 +11,8 @@ bin/
 .settings/
 .gradle/
 .kotlin/
-#data/
+data/
+fallnight/data/
 .idea/
 
 # legacy/runtime assets not shipped in source repo
