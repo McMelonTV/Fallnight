@@ -1,0 +1,19 @@
+---
+name: E
+id: 4
+world: spawn-world
+x1: 4658
+y1: 79
+z1: 9
+x2: 4693
+y2: 72
+z2: -21
+blocks:
+  - "minecraft:gold_ore"
+  - "minecraft:sandstone"
+prices:
+  "minecraft:gold_ore": 18
+  "minecraft:sandstone": 4
+spawnX: 4675
+spawnY: 80
+spawnZ: -6

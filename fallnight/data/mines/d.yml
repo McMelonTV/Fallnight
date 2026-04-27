@@ -1,0 +1,19 @@
+---
+name: D
+id: 3
+world: spawn-world
+x1: 4488
+y1: 87
+z1: 20
+x2: 4513
+y2: 80
+z2: -12
+blocks:
+  - "minecraft:iron_ore"
+  - "minecraft:stone"
+prices:
+  "minecraft:iron_ore": 12
+  "minecraft:stone": 3
+spawnX: 4500
+spawnY: 88
+spawnZ: 4

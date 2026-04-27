@@ -1,0 +1,19 @@
+---
+name: U
+id: 20
+world: spawn-world
+x1: 8257
+y1: 75
+z1: 344
+x2: 8328
+y2: 68
+z2: 244
+blocks:
+  - "minecraft:blackstone"
+  - "minecraft:gilded_blackstone"
+prices:
+  "minecraft:blackstone": 1400
+  "minecraft:gilded_blackstone": 1800
+spawnX: 8292
+spawnY: 76
+spawnZ: 294

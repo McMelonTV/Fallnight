@@ -1,0 +1,19 @@
+---
+name: Y
+id: 24
+world: spawn-world
+x1: 7711
+y1: 76
+z1: 285
+x2: 7731
+y2: 69
+z2: 247
+blocks:
+  - "minecraft:emerald_block"
+  - "minecraft:diamond_block"
+prices:
+  "minecraft:emerald_block": 5200
+  "minecraft:diamond_block": 4800
+spawnX: 7721
+spawnY: 77
+spawnZ: 266

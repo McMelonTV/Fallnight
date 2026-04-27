@@ -1,0 +1,17 @@
+---
+name: A
+id: 0
+world: spawn-world
+x1: 4016
+y1: 62
+z1: 6
+x2: 4041
+y2: 55
+z2: -26
+blocks:
+  - "minecraft:stone"
+prices:
+  "minecraft:stone": 2
+spawnX: 4028
+spawnY: 63
+spawnZ: -10

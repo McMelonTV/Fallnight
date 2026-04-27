@@ -1,7 +1,0 @@
-{
-  "ticketPrice" : 100000.0,
-  "jackpotContribution" : 75000.0,
-  "jackpotPool" : 0.0,
-  "remainingDrawSeconds" : 3600,
-  "tickets" : { }
-}

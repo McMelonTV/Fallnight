@@ -1,0 +1,19 @@
+---
+name: L
+id: 11
+world: spawn-world
+x1: 6061
+y1: 58
+z1: 65
+x2: 6084
+y2: 51
+z2: 46
+blocks:
+  - "minecraft:nether_quartz_ore"
+  - "minecraft:basalt"
+prices:
+  "minecraft:nether_quartz_ore": 135
+  "minecraft:basalt": 18
+spawnX: 6072
+spawnY: 59
+spawnZ: 55

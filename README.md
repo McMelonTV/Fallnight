@@ -17,5 +17,5 @@ Play at `play.fallnight.xyz`
 
 > [!NOTE]
 > **AI Usage Disclaimer**:
-> This project heavily utilized LLMs for rewriting the original Nightfall source from PHP (PocketMine-MP, Minecraft: Bedrock Edition) to Java (Minestom, Minecraft: Java Edition).
+> This project heavily utilized LLMs for rewriting the original nightfall source from PHP (Minecraft: Bedrock Edition) to Java (Minestom, Minecraft: Java Edition).
 > If something breaks, blame the robots.

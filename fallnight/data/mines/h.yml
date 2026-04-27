@@ -1,0 +1,19 @@
+---
+name: H
+id: 7
+world: spawn-world
+x1: 5413
+y1: 71
+z1: 33
+x2: 5436
+y2: 64
+z2: 11
+blocks:
+  - "minecraft:diamond_ore"
+  - "minecraft:deepslate"
+prices:
+  "minecraft:diamond_ore": 55
+  "minecraft:deepslate": 6
+spawnX: 5424
+spawnY: 72
+spawnZ: 22

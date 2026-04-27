@@ -1,0 +1,19 @@
+---
+name: X
+id: 23
+world: spawn-world
+x1: 7358
+y1: 79
+z1: 269
+x2: 7393
+y2: 72
+z2: 239
+blocks:
+  - "minecraft:raw_gold_block"
+  - "minecraft:raw_iron_block"
+prices:
+  "minecraft:raw_gold_block": 3200
+  "minecraft:raw_iron_block": 2600
+spawnX: 7375
+spawnY: 80
+spawnZ: 254

@@ -15,6 +15,6 @@ bin/
 .idea/
 
 # legacy/runtime assets not shipped in source repo
-PocketMineMP-original/
+nightfall/
 spawn-world/
 PremiereSetups-15FreeMines.zip

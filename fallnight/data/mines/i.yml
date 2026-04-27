@@ -1,0 +1,19 @@
+---
+name: I
+id: 8
+world: spawn-world
+x1: 5557
+y1: 75
+z1: 84
+x2: 5628
+y2: 68
+z2: -16
+blocks:
+  - "minecraft:emerald_ore"
+  - "minecraft:deepslate"
+prices:
+  "minecraft:emerald_ore": 80
+  "minecraft:deepslate": 8
+spawnX: 5592
+spawnY: 76
+spawnZ: 34
