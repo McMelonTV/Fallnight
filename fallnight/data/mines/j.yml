@@ -2,12 +2,12 @@
 name: J
 id: 9
 world: spawn-world
-x1: 5709
+x1: 5708
 y1: 72
-z1: 40
-x2: 5762
+z1: 41
+x2: 5763
 y2: 65
-z2: -1
+z2: -2
 blocks:
   - "minecraft:obsidian"
   - "minecraft:blackstone"
@@ -15,5 +15,5 @@ prices:
   "minecraft:obsidian": 100
   "minecraft:blackstone": 12
 spawnX: 5735
-spawnY: 73
+spawnY: 74
 spawnZ: 19

@@ -2,12 +2,12 @@
 name: N
 id: 13
 world: spawn-world
-x1: 5011
+x1: 5010
 y1: 76
-z1: 25
-x2: 5031
+z1: 26
+x2: 5032
 y2: 69
-z2: -13
+z2: -14
 blocks:
   - "minecraft:ancient_debris"
   - "minecraft:blackstone"
@@ -15,5 +15,5 @@ prices:
   "minecraft:ancient_debris": 250
   "minecraft:blackstone": 22
 spawnX: 5021
-spawnY: 77
+spawnY: 78
 spawnZ: 6

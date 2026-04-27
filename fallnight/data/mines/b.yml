@@ -2,12 +2,12 @@
 name: B
 id: 1
 world: spawn-world
-x1: 4178
+x1: 4177
 y1: 70
-z1: 11
-x2: 4203
+z1: 12
+x2: 4204
 y2: 63
-z2: -21
+z2: -22
 blocks:
   - "minecraft:coal_ore"
   - "minecraft:stone"
@@ -15,5 +15,5 @@ prices:
   "minecraft:coal_ore": 6
   "minecraft:stone": 2
 spawnX: 4190
-spawnY: 71
+spawnY: 72
 spawnZ: -5

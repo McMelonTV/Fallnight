@@ -2,12 +2,12 @@
 name: F
 id: 5
 world: spawn-world
-x1: 4835
+x1: 4834
 y1: 81
-z1: 30
-x2: 4865
+z1: 31
+x2: 4866
 y2: 74
-z2: -8
+z2: -9
 blocks:
   - "minecraft:redstone_ore"
   - "minecraft:deepslate"
@@ -15,5 +15,5 @@ prices:
   "minecraft:redstone_ore": 24
   "minecraft:deepslate": 5
 spawnX: 4850
-spawnY: 82
+spawnY: 83
 spawnZ: 11

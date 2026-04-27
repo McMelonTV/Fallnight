@@ -2,12 +2,12 @@
 name: P
 id: 15
 world: spawn-world
-x1: 7535
+x1: 7534
 y1: 81
-z1: 290
-x2: 7565
+z1: 291
+x2: 7566
 y2: 74
-z2: 252
+z2: 251
 blocks:
   - "minecraft:raw_iron_block"
   - "minecraft:deepslate"
@@ -15,5 +15,5 @@ prices:
   "minecraft:raw_iron_block": 420
   "minecraft:deepslate": 20
 spawnX: 7550
-spawnY: 82
+spawnY: 83
 spawnZ: 271

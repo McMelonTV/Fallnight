@@ -2,12 +2,12 @@
 name: M
 id: 12
 world: spawn-world
-x1: 5310
+x1: 5309
 y1: 75
-z1: 27
-x2: 5327
+z1: 28
+x2: 5328
 y2: 68
-z2: 9
+z2: 8
 blocks:
   - "minecraft:deepslate_diamond_ore"
   - "minecraft:deepslate"
@@ -15,5 +15,5 @@ prices:
   "minecraft:deepslate_diamond_ore": 180
   "minecraft:deepslate": 10
 spawnX: 5318
-spawnY: 76
+spawnY: 77
 spawnZ: 18

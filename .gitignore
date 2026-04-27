@@ -17,4 +17,4 @@ bin/
 # legacy/runtime assets not shipped in source repo
 nightfall/
 spawn-world/
-PremiereSetups-15FreeMines.zip
+setup-tool/

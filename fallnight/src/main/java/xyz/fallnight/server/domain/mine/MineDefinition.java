@@ -206,7 +206,7 @@ public final class MineDefinition {
 
     @JsonIgnore
     public int topTeleportY() {
-        return region == null ? effectiveSpawnY() + 1 : region.maxY() + 1;
+        return spawnY == null && region != null ? region.maxY() + 1 : effectiveSpawnY();
     }
 
     public boolean contains(int x, int y, int z, String worldName) {
